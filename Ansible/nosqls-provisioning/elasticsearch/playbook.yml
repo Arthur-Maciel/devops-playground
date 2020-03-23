@@ -1,0 +1,4 @@
+- name: Elasticsearch provisining
+  hosts: all
+  roles:
+      - elasticsearch

@@ -1,0 +1,17 @@
+- name: getting version
+  include_vars:
+    file: cassandra-version.yml
+
+- name: Getting Cassandra .tar
+  get_url:  
+    url: http://ftp.unicamp.br/pub/apache/cassandra/{{ cassandra_version }}/apache-cassandra-{{ cassandra_version }}-bin.tar.gz
+    dest: /tmp/apache-cassandra-{{ cassandra_version }}-bin.tar.gz
+
+- name: Unzip .tar
+  unarchive:
+    src: /tmp/apache-cassandra-{{ cassandra_version }}-bin.tar.gz
+    dest: /
+    remote_src: yes
+
+- name: Rename folder
+  shell: mv /apache-cassandra-{{ cassandra_version }} /cassandra

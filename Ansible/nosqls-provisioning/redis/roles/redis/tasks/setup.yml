@@ -1,0 +1,9 @@
+- name: update
+  apk:
+   update_cache: yes
+
+- name: Install commands for extract
+  shell: apk add tar unzip
+
+- name: Installing redis dependecies
+  shell: apk add musl gcc g++ make linux-headers

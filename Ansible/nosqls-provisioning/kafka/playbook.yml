@@ -1,0 +1,4 @@
+- name: Kafka provisining
+  hosts: all
+  roles:
+      - kafka

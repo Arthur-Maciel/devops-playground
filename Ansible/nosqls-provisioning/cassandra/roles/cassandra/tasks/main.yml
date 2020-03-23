@@ -1,0 +1,5 @@
+- name: cass setup
+  import_tasks: setup.yml
+
+- name: cass installation
+  import_tasks: cassandra.yml

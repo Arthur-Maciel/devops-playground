@@ -1,0 +1,24 @@
+- name: Installing golang
+  become: yes
+  shell: apt install golang-go -y
+
+- name: Exporting GOPATH
+  shell: export GOPATH=/vagrant/app && cd /vagrant/app
+
+- name: Downloading dependencies from calculator project
+  shell: go get -d -v ./...
+
+- name: Building calculator
+  shell: cd app && go build -o gocalculator .
+
+- name: Creating script
+  copy:
+   dest: "/vagrant/check_status.sh"
+   content: |
+    #!/bin/bash
+    if  pidof gocalculator ;
+    then
+      echo "RUNNING"
+    else
+      echo "NOT RUNNING"
+    fi

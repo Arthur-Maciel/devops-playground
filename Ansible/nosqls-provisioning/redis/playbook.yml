@@ -1,0 +1,4 @@
+- name: Redis provisining
+  hosts: localhost
+  roles:
+    - redis

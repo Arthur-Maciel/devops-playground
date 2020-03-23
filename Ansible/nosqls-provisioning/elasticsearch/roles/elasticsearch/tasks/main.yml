@@ -1,0 +1,5 @@
+- name: Elasticsearchss setup
+  import_tasks: setup.yml
+
+- name: Elasticsearch installation
+  import_tasks: elasticsearch.yml

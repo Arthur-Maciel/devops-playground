@@ -1,0 +1,5 @@
+- name: kafka setup
+  import_tasks: setup.yml
+
+- name: kafka installation
+  import_tasks: kafka.yml

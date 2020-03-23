@@ -1,0 +1,20 @@
+- name: getting version
+  include_vars:
+    file: redis-version.yml
+
+- name: Getting Redis .tar
+  get_url:  
+    url: http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz 
+    dest: /tmp/redis-{{ redis_version }}.tar.gz
+
+- name: Unzip .tar
+  unarchive:
+    src: /tmp/redis-{{ redis_version }}.tar.gz
+    dest: /
+    remote_src: yes
+
+- name: Make Redis
+  shell: cd /redis-{{ redis_version }} && make
+
+- name: Rename folder
+  shell: mv /redis-{{ redis_version }} /redis

@@ -1,0 +1,38 @@
+{
+    "builders":[
+        {
+            "type": "docker",
+            "image": "woahbase/alpine-ansible",
+            "commit": true,
+	    "changes": [
+            "WORKDIR /cassandra",
+            "EXPOSE 7199",
+            "EXPOSE 7000",
+            "EXPOSE 7001",
+            "EXPOSE 9160",
+            "EXPOSE 9042",
+            "ENTRYPOINT [\"sh\", \"-c\", \"bin/cassandra -Rf\"]"
+		]
+        }
+    ],
+    "provisioners":[
+    {
+        "type": "file",
+        "source": "roles",
+        "destination": "etc/ansible"
+    },
+	{
+		"type": "ansible-local",
+		"playbook_file": "playbook.yml"
+	}
+    ],
+    "post-processors": [
+        [
+            {
+               "type": "docker-tag",
+               "repository": "cassandra",
+               "tag": "latest"
+            }
+        ]
+    ]
+}

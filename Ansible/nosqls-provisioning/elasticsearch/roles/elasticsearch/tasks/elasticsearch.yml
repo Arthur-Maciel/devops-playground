@@ -1,0 +1,24 @@
+- name: getting version
+  include_vars:
+    file: elastic-version.yml
+
+- name: Adding user to run elasticsearch
+  user:
+    name: elastic
+    comment: Elastic user
+    uid: 1040
+
+- name: Getting Elasticsearch .tar
+  get_url:  
+    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz
+    dest: /tmp/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz
+
+- name: Unzip .tar
+  unarchive:
+    src: /tmp/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz
+    dest: /
+    remote_src: yes
+    owner: elastic
+
+- name: rename folder
+  shell: mv /elasticsearch-{{ elastic_version }} /elastic

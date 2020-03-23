@@ -1,0 +1,5 @@
+- name: setup
+  import_tasks: setup.yml
+
+- name: setup
+  import_tasks: redis.yml

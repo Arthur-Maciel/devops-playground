@@ -1,0 +1,33 @@
+{
+    "builders":[
+        {
+            "type": "docker",
+            "image": "woahbase/alpine-ansible",
+            "commit": true,
+	    "changes": [
+            "WORKDIR /kafka",
+            "ENTRYPOINT [\"sh\", \"-c\", \"bin/zookeeper-server-start.sh config/zookeeper.properties && bin/kafka-server-start.sh config/server.properties\"]"
+		]
+        }
+    ],
+    "provisioners":[
+    {
+        "type": "file",
+        "source": "roles",
+        "destination": "etc/ansible"
+    },
+	{
+		"type": "ansible-local",
+		"playbook_file": "playbook.yml"
+	}
+    ],
+    "post-processors": [
+        [
+            {
+               "type": "docker-tag",
+               "repository": "kafka",
+               "tag": "latest"
+            }
+        ]
+    ]
+}
