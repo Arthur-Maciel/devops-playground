@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                dir('.') {
+                 sh 'cd kubernetes/kubernetes-local-wtih-minikube/kubernetes && kubectl create -f .'   
+                }
+            }
+        }
+    }
+}

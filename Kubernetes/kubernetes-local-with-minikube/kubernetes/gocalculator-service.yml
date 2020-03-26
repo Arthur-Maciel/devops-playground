@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gocalculator
+  labels:
+    app: gocalculator
+    role: master
+    tier: backend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8081
+    targetPort: 8081
+  selector:
+    app: gocalculator
+    role: master
+    tier: backend
