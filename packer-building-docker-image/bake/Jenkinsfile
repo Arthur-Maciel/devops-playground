@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'cd packer-building-docker-image && packer build template-gocalculator.json'
+            }
+        }
+    }
+}

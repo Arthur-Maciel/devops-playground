@@ -1,0 +1,35 @@
+{
+  "builders":[
+    {
+      "type": "docker",
+      "image": "golang:latest",
+      "commit": true,
+      "changes": [
+        "EXPOSE 8080",
+        "ENTRYPOINT cd app && ./gocalculator"
+      ]
+    }
+  ],
+  "provisioners":[
+    {
+      "type": "file",
+      "source": "app",
+      "destination": "/go/app"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "cd app",
+        "go get -d -v ./...",
+        "go build -o gocalculator ."
+      ]
+    }
+  ],
+  "post-processors":[
+    {
+      "type": "docker-tag",
+      "repository": "arthurmaciel/gocalculator",
+      "tag": "latest"
+    }
+  ]
+}

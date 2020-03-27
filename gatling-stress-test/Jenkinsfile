@@ -4,7 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 dir('.') {
-                 sh 'cd kubernetes/kubernetes-local-wtih-minikube/kubernetes && kubectl create -f .'   
+                 sh 'cd gatling-stress-test && mvn gatling:test'   
+                 gatlingArchive()
                 }
             }
         }
