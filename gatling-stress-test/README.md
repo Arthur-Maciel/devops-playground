@@ -17,10 +17,6 @@
 
     - URL -> https://github.com/Arthur-Maciel/devops-playground.git
 
-    - Put your credential
-
-        - Add your github credential on credential section in Jenkins
-
     - Branch specifier: */master
 
     - On script path put: gatling-stress-test/Jenkinsfile

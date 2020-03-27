@@ -20,9 +20,7 @@
         Note: executing just ``minikube start`` it will choose a deafult vm driver in this cause it should bt virtualbox, but if you have more than one you can choose which one you want or even none (but with none you will have to execute with sudo), the command to choose the vm driver:
         > minikube start --vm-driver=<driver_name>
 
-    - 3: Create your github credential on Jenkins
-
-    - 4: Create jenkins job
+    - 3: Create jenkins job
 
         - Click on new job, give it a name and select pipeline
 
@@ -31,8 +29,6 @@
         - Choose ``git``
 
         - Repository URL: ``https://github.com/Arthur-Maciel/devops-playground.git``
-
-        - Put your credentials that you created before
 
         - On branch put: ``*/master``
 
