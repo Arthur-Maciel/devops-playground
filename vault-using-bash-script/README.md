@@ -17,7 +17,7 @@
 * Let postsecret.sh be executable with:
     > sudo chmod +x postsecret.sh
 
-* Execute the script and on the interface access ``secret`` and there should be a secret with the name ``mysecrets``, open it and will have a username and a password (both are the same from the json file on the folder postsecret)
+* Execute the script ( `` ./postsecret.sh {root token here}`` ) and on the interface access ``secret`` and there should be a secret with the name ``mysecrets``, open it and will have a username and a password (both are the same from the json file on the folder postsecret)
 
 ![](images/mysecrets.png)
 ![](images/secret.png)
