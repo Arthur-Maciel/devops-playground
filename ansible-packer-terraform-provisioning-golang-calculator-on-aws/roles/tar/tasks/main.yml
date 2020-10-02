@@ -1,0 +1,4 @@
+- name: Install commands for extract tar files
+  yum:
+    name: tar
+    state: present

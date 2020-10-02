@@ -1,0 +1,5 @@
+- name: Downloading project dependecies
+  shell: go get -u github.com/gorilla/mux
+
+- name: build Golang service
+  shell: cd /home/ec2-user/app && go build -o main .

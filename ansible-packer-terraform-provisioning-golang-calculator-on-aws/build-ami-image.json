@@ -1,0 +1,51 @@
+{
+    "variables": {
+      "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "region_default": "{{env `AWS_DEFAULT_REGION`}}"
+    },
+    "builders": [{
+      "name": "tema13devops",
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `region_default`}}",
+      "ssh_username": "ec2-user",
+      "ssh_keypair_name": "tema13devops",
+      "ssh_private_key_file": "path to file .pem",
+      "source_ami": "ami-0323c3dd2da7fb37d",
+      "ami_name": "golang-calculator",
+      "instance_type": "t2.micro",
+      "tags" : {
+          "Name": "tema13devops",
+          "OS_Version": "Amazon Linux/CentOs",
+          "Release": "Latest",
+          "Author" : "ArthurMacielGomes"
+      }
+    }],
+    "provisioners" : [
+    {
+        "type": "file",
+        "source": "./app",
+        "destination": "/home/ec2-user"
+    },
+    {
+        "type": "shell",
+        "inline": [
+          "sudo yum -y install python3 python3-pip",
+          "sudo pip3 install ansible"
+        ]
+      },
+    {
+        "type": "ansible-local",
+        "playbook_file": "playbook.yml",
+        "role_paths": [
+            "roles/tar",
+            "roles/golang",
+            "roles/git",
+            "roles/app"
+          ]
+    }
+    ]
+  }
+  

@@ -1,0 +1,9 @@
+---
+- name: EC2 provisining
+  hosts: localhost
+  become: yes
+  roles:
+    - tar
+    - golang
+    - git
+    - app
